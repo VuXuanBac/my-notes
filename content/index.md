@@ -1,6 +1,10 @@
 ---
-title: Welcome to Quartz
+title: Welcome to my page
+draft: false
 ---
 
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+Chào mừng bạn đến với trang blog của mình 😋.
+
+🚩 Dưới đây là một số nội dung mình tìm hiểu
+- 💎[Ruby on Rails](ror) 🦒 là tổng hợp kiến thức Ruby on Rails.
+- 🌾 [Today I Learn](til) 🐿 chứa những bài viết nhỏ về những kiến thức, kỹ thuật mình học hỏi được.

@@ -3,10 +3,10 @@ name: Build and Test
 on:
   pull_request:
     branches:
-      - v4
+      - quartz
   push:
     branches:
-      - v4
+      - quartz
 
 jobs:
   build-and-test:
