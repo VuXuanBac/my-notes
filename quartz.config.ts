@@ -8,22 +8,22 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🪴 Quartz 4.0",
+    pageTitle: "\u2650Shin\u270c",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
     },
     locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    baseUrl: "vuxuanbac.github.io/my-notes",
+    ignorePatterns: ["**/private", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
+        header: "Kode Mono",//Kode Mono, Madimi One
+        body: "Fira Sans", //
+        code: "Chivo Mono",
       },
       colors: {
         lightMode: {
@@ -55,7 +55,6 @@ const config: QuartzConfig = {
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "filesystem"],
       }),
-      Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.Latex({ renderEngine: "katex" }),
       Plugin.SyntaxHighlighting({
         theme: {
@@ -64,6 +63,7 @@ const config: QuartzConfig = {
         },
         keepBackground: false,
       }),
+      Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
@@ -77,8 +77,8 @@ const config: QuartzConfig = {
       Plugin.FolderPage(),
       Plugin.TagPage(),
       Plugin.ContentIndex({
-        enableSiteMap: true,
-        enableRSS: true,
+        enableSiteMap: false,
+        enableRSS: false,
       }),
       Plugin.Assets(),
       Plugin.Static(),
