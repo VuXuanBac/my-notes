@@ -1,6 +1,7 @@
 ---
 title: Docker
 draft: true
+date: 2024-03-07
 tags:
   - system
   - docker
@@ -144,3 +145,135 @@ Lệnh này giống như bản mô tả để việc chạy container và tạo 
 Ngoài ra, `ADD` có thêm hai chức năng:
 - Tự động giải nén **gzip, bzip2, xz** thành thư mục
 - Download tệp từ URL
+
+# Persist the DB
+
+Các containers chạy độc lập với nhau, sẽ luôn sử dụng Filesystem được khởi tạo cùng với chúng. Như vậy, mỗi lần chạy một container instance.
+
+Do đó, để lưu trữ lâu dài dữ liệu trên container, ta cần ánh xạ nó sang ổ cứng của máy host. Cơ chế này được cung cấp từ [**Volume**](https://docs.docker.com/storage/volumes/).
+- Thay đổi trên tệp có thể đọc từ host.
+- Các containers có thể mount tới thư mục Volume này.
+
+![Docker Volume](assets/docker/volume.png)
+
+Ta có thể tạo Volume với lệnh
+
+```cmd
+docker volume create <volume-name>
+```
+
+Để xem thông tin về Volume vừa tạo, bao gồm vị trí lưu Volume trên ổ cứng, sử dụng lệnh
+
+```cmd
+docker volume inspec <volume-name>
+```
+
+Để mount một container với một Volume, sử dụng lệnh
+
+```cmd
+docker run ... --mount type=volume,src=<volume-name>,target=<container-directory>
+```
+
+Ta có thể tạo và mount đồng thời Volume khi chạy container qua option `-v`
+
+```cmd
+docker run ... -v <volume-name>:<target>
+```
+
+# Bind Mount
+
+Bind Mount là một cơ chế giúp đồng bộ thay đổi trên một thư mục trên host với hệ thống tệp trong container.
+
+Cơ chế này rất hữu dụng trong việc phát triển ứng dụng, giúp build và chạy ứng dụng từ container mà không cần các công cụ phát triển trên host.
+
+# Multi-container App
+
+Việc phát triển ứng dụng nhiều khi cần chạy nhiều containers cho các dịch vụ khác nhau: DB server, web server,...
+
+Để các containers trao đổi thông tin với nhau, ta cần kết nối chúng qua một **Network**.
+
+Ta tạo một Network qua
+
+```cmd
+docker network create <network-name>
+```
+
+và có thể gắn một container vào một Network qua
+
+```cmd
+docker run ... --network <network-name> --network-alias 
+```
+
+## Docker Compose
+
+Việc tạo và chạy thủ công các containers cần giao tiếp với nhau khiến khó quản lý. Ta có thể sử dụng Docker Compose để khai báo các lệnh này vào một file YAML.
+
+Trong thư mục ứng dụng, tạo tệp **`compose.yaml`**
+
+VD: Cần chạy một ứng dụng NodeJS và MySQL
+
+```cmd
+<!-- NodeJS -->
+docker run -dp 127.0.0.1:3000:3000 \
+  -w /app -v "$(pwd):/app" \
+  --network todo-app \
+  -e MYSQL_HOST=mysql \
+  -e MYSQL_USER=root \
+  -e MYSQL_PASSWORD=secret \
+  -e MYSQL_DB=todos \
+  node:18-alpine \
+  sh -c "yarn install && yarn run dev"
+
+<!-- MySQL -->
+docker run -d \
+  --network todo-app --network-alias mysql \
+  -v todo-mysql-data:/var/lib/mysql \
+  -e MYSQL_ROOT_PASSWORD=secret \
+  -e MYSQL_DATABASE=todos \
+  mysql:8.0
+```
+
+Tương ứng với chúng là file **`compose.yaml`** như sau
+
+```yaml
+services:
+  app: # --name
+    image: node:18-alpine # image-name
+    command: sh -c "yarn install && yarn run dev" # command
+    ports: # -p
+      - 127.0.0.1:3000:3000
+    working_dir: /app # -w
+    volumes: # -v
+      - ./:/app
+    environment: # -e
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DB: todos
+  db: # name for container 
+    image: mysql:8.0
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: todos
+
+volumes:
+  todo-mysql-data:
+```
+
+Với **compose.yaml**, ta có thể chạy các containers như sau:
+
+```cmd
+docker compose up -d
+```
+
+Để dừng các containers và xóa network, sử dụng
+
+```cmd
+docker compose down [--volumes]
+```
+
+# Example
+
+Ví dụ này cấu hình chạy một ứng dụng RoR với PostgreSQL DB trên Docker
