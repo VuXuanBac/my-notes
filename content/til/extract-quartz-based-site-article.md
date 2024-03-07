@@ -1,13 +1,15 @@
 ---
   title: Extract Quartz-based sites' articles
   draft: false
+  date: 2024-03-06
   tags:
     - quartz
     - tool
     - til
 ---
+#### ⚡ Vấn đề
 
-> 🐶**Làm thế nào để lấy được thông tin các bài viết trên các website sử dụng Quartz?** 🤔
+> 🐶 **Làm thế nào để lấy được thông tin các bài viết trên các website sử dụng Quartz?** 🤔
 
 🎈Đơn giản nhất, ta có thể xem danh sách các bài viết dựa trên Tags. Tuy nhiên, chất lượng của cách này hoàn toàn phụ thuộc vào người viết, hoàn toàn có thể có những bài viết không được gắn tag nào cả.
 
@@ -139,7 +141,7 @@ const config: QuartzConfig = {
 }
 ```
 
-📬 **Tóm lại**
+#### 📬 Tóm lại
 
 > [!important]
 > - Bạn có thể duyệt các bài viết trong một Quartz website theo đường dẫn **`https://your-site/static/contentIndex.json`**
