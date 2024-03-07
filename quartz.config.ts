@@ -16,7 +16,7 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "vuxuanbac.github.io/my-notes",
-    ignorePatterns: ["**/private", "../assets", "templates", ".obsidian"],
+    ignorePatterns: ["**/private", "**/assets", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
       cdnCaching: true,

@@ -22,9 +22,7 @@
 - **name**: Tên hiển thị
 - **description**: Mô tả hiển thị cùng với Tooltip
 - **prefix**: Chỉ thị kích hoạt Snippets (kết hợp với lệnh)
-    - Đoạn text hoặc mảng các text.
 - **body**: Nội dung (chính là template cần chèn) sẽ thay thế vị trí **prefix**
-    - Đoạn text hoặc mảng các text (mỗi phần tử tương ứng một dòng)
 
 🚀 Để tạo một snippet
 
@@ -39,24 +37,24 @@
 - Định nghĩa các trường cho Snippet
 - Đặc biệt, với **body**, ta có thể sử dụng một số kỹ thuật sau để phản ánh nội dung cần chèn:
 
-⬇ **Tabstop**: Sử dụng các chỉ số dạng `$1, $2, ${1:...},...` để chỉ thứ tự di chuyển Tab giữa các vị trí cần người dùng nhập nội dung trong Template. 
+▶ **Tabstop**: Sử dụng các chỉ số dạng `$1, $2, ${1:...},...` để chỉ thứ tự di chuyển Tab giữa các vị trí cần người dùng nhập nội dung trong Template. 
 
 > [!info]
 > Nếu có nhiều vị trí có chỉ số Tabstop giống nhau, nội dung người dùng nhập sẽ tự động chèn cho tất cả các vị trí đó.
 
-💬**Placeholder**: Nội dung mặc định cho phần nội dung người dùng cần điền. VD: `${1:foo}`
+💬 **Placeholder**: Nội dung mặc định cho phần nội dung người dùng cần điền. VD: `${1:foo}`
 
-🎲**Choice**: Nội dung cần điền được gợi ý sẵn một số giá trị, người dùng chỉ cần chọn. VD: `${1|one,two,three|}` 
+🎲 **Choice**: Nội dung cần điền được gợi ý sẵn một số giá trị, người dùng chỉ cần chọn. VD: `${1|one,two,three|}` 
 
-🍪**Variable**: Một số giá trị đặc biệt được đặt tên. [Xem thêm](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_variables).
+🍪 **Variable**: Một số giá trị đặc biệt được đặt tên. [Xem thêm](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_variables).
 
-🔀**Transform**: Thay đổi giá trị điền (thường là từ **variables**) sử dụng Regex.
+🔀 **Transform**: Thay đổi giá trị điền (thường là từ **variables**) sử dụng Regex.
 
-#### 📖Ví dụ
+#### 📖 Ví dụ
 
 Để phục vụ viết notes, mình tạo hai Snippets cho Markdown
 
-🔖Thứ nhất, một snippets để tự động chèn các highlight notes (Github hỗ trợ hiển thị)
+✅ Thứ nhất, một snippets để tự động chèn các highlight notes (Github hỗ trợ hiển thị)
 
 ```json
 "Github Highlight Note": {
@@ -76,9 +74,9 @@ Kết quả khi nhập `>` và nhấn `Ctrl + Space`, nội dung chèn là:
 > Content of the note
 ```
 
-🔖Thứ hai, một snippets với cú pháp phức tạp hơn giúp mình tự động viết Markdown Frontmatter cho Quartz note.
+✅ Thứ hai, một snippets với cú pháp phức tạp hơn giúp mình tự động viết Markdown Frontmatter cho Quartz note.
 
-```
+```json
 "Quartz Front Matter": {
   "prefix": "blog",
   "description": "Markdown Frontmatter that the  page's properties",
@@ -110,7 +108,7 @@ Kết quả khi chèn là:
 ---
 ```
 
-✏ **Giải thích một chút**
+🔆 **Giải thích một chút**
 - Giá trị cho phần **title** mình sử dụng **variable** `TM_FILENAME_BASE` là tên tệp hiện tại (không bao gồm extension)
 - Sau đó mình sử dụng Regex để **transform**, cụ thể là thay thế các ký tự `-` hoặc `.` trong tên tệp bằng ký tự `space`, và Capitalize các từ trong tên tệp.
 - Phần **date** mình đang để tự động lấy ngày hiện tại, và chỉ tự động thay đổi (tạo Tabstop) phần ngày

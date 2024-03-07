@@ -1,6 +1,7 @@
 ---
 title: Welcome to my page
 draft: false
+date: 2024-03-05
 ---
 
 Chào mừng bạn đến với trang blog của mình 😋.
