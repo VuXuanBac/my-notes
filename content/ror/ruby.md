@@ -1,6 +1,7 @@
 ---
 title: Ruby
 draft: false
+date: 2024-03-04
 tags:
   - ruby
   - language

@@ -1,6 +1,7 @@
 ---
 title: View Helper
 draft: false
+date: 2024-03-04
 tags:
   - ror
   - view

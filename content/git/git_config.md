@@ -1,6 +1,7 @@
 ---
 title: Git Config
 draft: false
+date: 2024-03-05
 tags:
   - git
   - system

@@ -1,6 +1,7 @@
 ---
 title: RoR Michael Tutorial
 draft: true
+date: 2024-03-04
 tags:
   - ror
   - example
