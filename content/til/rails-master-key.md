@@ -19,7 +19,7 @@
 Thuật toán này cần sử dụng một *password*, do đó, cần lưu lại một *password* riêng cho ứng dụng. Rails gọi *password* này là **`secret_key_base`**. Giá trị này được sinh tự động khi tạo project.
 
 > [!info]
-> [`secret_key_base`](https://api.rubyonrails.org/classes/Rails/Application.html#method-i-secret_key_base) có thể truy cập qua `Rails.application.secret_key_base`**
+> [`secret_key_base`](https://api.rubyonrails.org/classes/Rails/Application.html#method-i-secret_key_base) có thể truy cập qua `Rails.application.secret_key_base`
 
 Trong các phiên bản khác nhau của Rails mà `secret_key_base` được lưu trữ khác nhau:
 - **Rails 4.1** lưu trữ trong tệp **`secrets.yml`**. Tệp này cần giữ bí mật (git ignore)
