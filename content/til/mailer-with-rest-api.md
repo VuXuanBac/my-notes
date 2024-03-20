@@ -105,10 +105,10 @@ Sau khi khai báo một delivery method tên là `:restapi` và ánh xạ tới 
 ```ruby
 # config/environments/<env>.rb
 config.action_mailer.delivery_method = :restapi
+
+config.action_mailer.restapi_settings = {
+    # arguments for `initialize` in `MailSender` class
+}
 ```
 
-> [!info]
-> Các đối số cấu hình cần truyền vào phương thức khởi tạo `MailSender` có thể truyền trực tiếp vào cấu hình này.
-
-> [!note]
-> [Resend](https://resend.com/overview) cũng là một sự lựa chọn tốt, với slogan **_Resend is the email API for developers._**. Gói miễn phí của nền tảng này có thể gửi tối đa 100 emails/ngày
+> [!note] > [Resend](https://resend.com/overview) cũng là một sự lựa chọn tốt, với slogan **_Resend is the email API for developers._**. Gói miễn phí của nền tảng này có thể gửi tối đa 100 emails/ngày
