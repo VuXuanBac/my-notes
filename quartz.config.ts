@@ -16,12 +16,12 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "vuxuanbac.github.io/my-notes",
-    ignorePatterns: ["**/private", "**/assets", "templates", ".obsidian"],
+    ignorePatterns: ["**/private", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
       cdnCaching: true,
       typography: {
-        header: "Kode Mono",//Kode Mono, Madimi One
+        header: "Kode Mono", //Kode Mono, Madimi One
         body: "Fira Sans", //
         code: "Chivo Mono",
       },
